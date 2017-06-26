@@ -81,8 +81,7 @@ public class HFileHack {
 		FileSystem fs = FileSystem.get(conf);
 		List<List<byte[]>> regionblockkeys = new ArrayList<List<byte[]>>();
 		for (Path sfs : storefiles) {
-			HFile.Reader reader = HFile.createReader(fs, sfs, new CacheConfig(
-					conf));
+			HFile.Reader reader = HFile.createReader(fs, sfs, new CacheConfig(conf),conf);
 			BlockIndexReader blockindexreader = reader
 					.getDataBlockIndexReader();
 			if (blockindexreader == null) {
@@ -192,7 +191,7 @@ public class HFileHack {
 		return ret;
 	}
 
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException {/*
 		HTable table = new HTable("NewWisdomPost");
 		Pair<byte[][], byte[][]> p = table.getStartEndKeys();
 		byte[][] st = p.getFirst();
@@ -258,6 +257,6 @@ public class HFileHack {
 		// for(byte[] b:mg){
 		// System.out.println(Bytes.toString(b));
 		// }
-	}
+	*/}
 }
 

@@ -30,7 +30,7 @@ public class HFileRecordReader extends
 		final Path path = split.getPath();
 
 		HFile.Reader reader = HFile.createReader(FileSystem.get(conf), path,
-				new CacheConfig(conf));
+				new CacheConfig(conf),conf);
 
 		scanner = reader.getScanner(false, false);// no block cache
 		reader.loadFileInfo();
@@ -90,7 +90,7 @@ public class HFileRecordReader extends
 		byte[] current_rk = scanner.getKeyValue().getRow();
 		boolean loop = true;
 		while (loop) {
-			KeyValue kv = scanner.getKeyValue();
+			KeyValue kv = (KeyValue) scanner.getKeyValue();
 			kvs.add(kv);
 			if (!next()) {
 				scan_stop = true;
